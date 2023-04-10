@@ -17,14 +17,12 @@
   z-index: 2;
   font-family: var(--font-mono);
 }
-
 .description a {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
 }
-
 .description p {
   position: relative;
   margin: 0;
@@ -53,17 +51,14 @@
   border: 1px solid rgba(var(--card-border-rgb), 0);
   transition: background 200ms, border 200ms;
 }
-
 .card span {
   display: inline-block;
   transition: transform 200ms;
 }
-
 .card h2 {
   font-weight: 600;
   margin-bottom: 0.7rem;
 }
-
 .card p {
   margin: 0;
   opacity: 0.6;
@@ -87,14 +82,12 @@
   height: 360px;
   margin-left: -400px;
 }
-
 .center::after {
   background: var(--primary-glow);
   width: 240px;
   height: 180px;
   z-index: -1;
 }
-
 .center::before,
 .center::after {
   content: '';
@@ -113,7 +106,6 @@
     background: rgba(var(--card-rgb), 0.1);
     border: 1px solid rgba(var(--card-border-rgb), 0.15);
   }
-
   .card:hover span {
     transform: translateX(4px);
   }
@@ -141,7 +133,6 @@
   .card {
     padding: 1rem 2.5rem;
   }
-
   .card h2 {
     margin-bottom: 0.5rem;
   }
@@ -149,7 +140,6 @@
   .center {
     padding: 8rem 0 6rem;
   }
-
   .center::before {
     transform: none;
     height: 300px;
@@ -158,11 +148,9 @@
   .description {
     font-size: 0.8rem;
   }
-
   .description a {
     padding: 1rem;
   }
-
   .description p,
   .description div {
     display: flex;
@@ -170,7 +158,6 @@
     position: fixed;
     width: 100%;
   }
-
   .description p {
     align-items: center;
     inset: 0 0 auto;
@@ -186,7 +173,6 @@
     background-clip: padding-box;
     backdrop-filter: blur(24px);
   }
-
   .description div {
     align-items: flex-end;
     pointer-events: none;
@@ -208,12 +194,11 @@
     grid-template-columns: repeat(2, 50%);
   }
 }
-
 @media (prefers-color-scheme: dark) {
   .vercelLogo {
     filter: invert(1);
   }
-
+  
   .logo {
     filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
   }
