@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*Phuong31102002": ["./src/*"]
+    }
+  }
+}
