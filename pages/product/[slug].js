@@ -15,18 +15,9 @@ const ProductDetails = ({ product, products }) => {
         <div>
             <div className="product-detail-container">
                 <div>
-                    <div className="image-container">
-                        <img src={urlFor(image && image[index])} className="product-detail-image" />
-                    </div>
-                    <div className="small-images-container">
-                        {image?.map((item, i) => (
-                            <img 
-                            key={i}
-                            src={urlFor(item)}
-                            className={i === index ? 'small-image selected-image' : 'small-image'}
-                            onMouseEnter={() => setIndex(i)}
-                            />
-                        ))}
+                    <div className="image-container"><img src={urlFor(image && image[index])} className="product-detail-image" /></div>
+                    <div className="small-images-container"> {image?.map((item, i) => 
+                        (<img key={i} src={urlFor(item)} className={i === index ? 'small-image selected-image' : 'small-image'} onMouseEnter={() => setIndex(i)}/>))}
                     </div>
                 </div>
                 <div className="product-detail-desc">
@@ -43,8 +34,12 @@ const ProductDetails = ({ product, products }) => {
                             (20)
                         </p>
                     </div>
-                    <h4>Details: </h4>
-                    <p>{details}</p>
+                    <h4>
+                        Details: 
+                    </h4>
+                    <p>
+                        {details}
+                    </p>
                     <p className="price">${price}</p>
                     <div className="quantity">
                         <h3>Quantity:</h3>
