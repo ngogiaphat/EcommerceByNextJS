@@ -3,11 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "description": "A tutorial for understanding Nodemon",
-  "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js",
     "build": "next build",
-    "start": "node app.js",
+    "start": "next start",
     "lint": "next lint"
   },
   "directories": {
@@ -20,8 +19,7 @@
   },
   "keywords": [
     "Node.js",
-    "JavaScript",
-    "TypeScript"
+    "JavaScript"
   ],
   "author": "Ngô Gia Phát",
   "license": "MIT",

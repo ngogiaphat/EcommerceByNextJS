@@ -1,3 +1,201 @@
 {
-  "extends": "next/core-web-vitals"
+  "root": true,
+  "extends": "next/core-web-vitals",
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "project": "./tsconfig.json",
+    "warnOnUnsupportedTypeScriptVersion": false,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "env": {
+    "es6": true,
+    "node": true,
+    "browser": true
+  },
+  "plugins": [
+    "react",
+    "import", 
+    "no-null", 
+    "react-hooks",
+    "simple-import-sort",
+    "@typescript-eslint", 
+    "eslint-plugin-local"
+  ],
+  "ignorePatterns":[
+    "/lib/**",
+    "/built/**",
+    "/tests/**",
+    "/internal/**",
+    "/coverage/**",
+    "/scripts/**/*.js",
+    "/scripts/**/*.d.*",
+    "**node_modules/**",
+    "/src/lib/*.generated.ts"
+  ],
+  "overrides": [
+    // By default, the ESLint CLI only looks at .js files. But, it will also look at any files which are referenced in an override config. Most users of typescript-eslint
+    // get this behavior by default by extending a recommended typescript-eslint config, which  just so happens to override some core ESLint rules. We don't extend from any config, so
+    // explicitly reference TS files here so the CLI picks them up.
+    //
+    // ESLint in VS Code will lint any opened file (so long as it's not eslintignore'd), so that will work regardless of the below.
+    //
+    // The same applies to mjs files; ESLint appears to not scan those either.
+    { "files": ["*.ts", "*.mts", "*.cts", "*.mjs", "*.cjs"] },
+    {
+      // These files contain imports in a specific order that are generally unsafe to modify.
+      "files": ["**/_namespaces/**"],
+      "rules": {
+        "simple-import-sort/imports": "off",
+        "simple-import-sort/exports": "off"
+      }
+    },
+    {
+      "files": ["*.mjs", "*.mts"],
+      "rules": {
+        // These globals don't exist outside of CJS files.
+        "no-restricted-globals": ["error",
+          { "name": "module" },
+          { "name": "exports" },
+          { "name": "require" },
+          { "name": "__dirname" },
+          { "name": "__filename" }
+        ]
+      }
+    }
+  ],
+  "rules": {
+    "semi": "off",
+    "quotes": "off",
+    "brace-style": "off",
+    "no-null/no-null": "error",
+    "no-duplicate-imports": "off",
+    "space-before-function-paren": "off",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "max-statements-per-line": ["error", { "max": 1 }],
+    "import/no-extraneous-dependencies": ["error", { "optionalDependencies": false }],
+    "@typescript-eslint/semi": "error",
+    "@typescript-eslint/array-type": "error",
+    "@typescript-eslint/no-this-alias": "error",
+    "@typescript-eslint/no-extra-semi": "error",
+    "@typescript-eslint/no-misused-new": "error",
+    "@typescript-eslint/unified-signatures": "error",
+    "@typescript-eslint/no-inferrable-types": "error",
+    "@typescript-eslint/no-duplicate-imports": "error",
+    "@typescript-eslint/no-array-constructor": "error",
+    "@typescript-eslint/triple-slash-reference": "error",
+    "@typescript-eslint/type-annotation-spacing": "error",
+    "@typescript-eslint/no-extra-non-null-assertion": "error",
+    "@typescript-eslint/prefer-for-of": "error",
+    "@typescript-eslint/prefer-as-const": "error",
+    "@typescript-eslint/prefer-function-type": "error",
+    "@typescript-eslint/prefer-namespace-keyword": "error",
+    "@typescript-eslint/adjacent-overload-signatures": "error",
+    "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
+    "@typescript-eslint/no-unused-expressions": ["error", { "allowTernary": true }],
+    "@typescript-eslint/brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
+    "@typescript-eslint/consistent-type-assertions": ["error", { "assertionStyle": "as" }],
+    "@typescript-eslint/quotes": ["error", "double", { "avoidEscape": true, "allowTemplateLiterals": true }],
+    "@typescript-eslint/space-before-function-paren": [
+      "error", 
+      {
+        "named": "never",
+        "anonymous": "always",
+        "asyncArrow": "always"
+      }],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      { "selector": "property", "format": null },
+      { "selector": "typeLike", "format": ["PascalCase"], "filter": { "regex": "^(__String|[A-Za-z]+_[A-Za-z]+)$", "match": false }},
+      { "selector": "parameter", "format": ["camelCase"], "leadingUnderscore": "allow", "filter": { "regex": "^(_+|[A-Za-z]+_[A-Z][a-z]+)$", "match": false }},
+      { "selector": "memberLike", "format": ["camelCase"], "leadingUnderscore": "allow", "filter": { "regex": "^([0-9]+|[A-Za-z]+_[A-Za-z]+)$", "match": false }},
+      { "selector": "function", "format": ["camelCase", "PascalCase"], "leadingUnderscore": "allow", "filter": { "regex": "^[A-Za-z]+_[A-Za-z]+$", "match": false }},
+      { "selector": "enumMember", "format": ["camelCase", "PascalCase"], "leadingUnderscore": "allow", "filter": { "regex": "^[A-Za-z]+_[A-Za-z]+$", "match": false }},
+      { "selector": "method", "format": ["camelCase", "PascalCase"], "leadingUnderscore": "allow", "filter": { "regex": "^([0-9]+|[A-Za-z]+_[A-Za-z]+)$", "match": false }},
+      { "selector": "interface", "format": ["PascalCase"], "custom": { "regex": "^I[A-Z]", "match": false }, "filter": { "regex": "^I(Arguments|TextWriter|O([A-Z][a-z]+[A-Za-z]*)?)$", "match": false }},
+      { "selector": "variable", "format": ["camelCase", "PascalCase", "UPPER_CASE"], "leadingUnderscore": "allow", "filter": { "regex": "^(_{1,2}filename|_{1,2}dirname|_+|[A-Za-z]+_[A-Za-z]+)$", "match": false }}
+    ],
+    "local/no-keywords": "error",
+    "local/jsdoc-format": "error",
+    "local/debug-assert": "error",
+    "local/simple-indent": "error",
+    "local/no-in-operator": "error",
+    "local/argument-trivia": "error",
+    "local/no-double-space": "error",
+    "local/type-operator-spacing": "error",
+    "local/no-type-assertion-whitespace": "error",
+    "local/object-literal-surrounding-space": "error",
+    "local/only-arrow-functions": ["error", {
+      "allowDeclarations": true,
+      "allowNamedFunctions": true
+    }],
+    "eqeqeq": "error",
+    "new-parens": "error",
+    "dot-notation": "error",
+    "constructor-super": "error",
+    "curly": ["error", "multi-line"],
+    "linebreak-style": ["error", "windows"],
+    "no-eval": "error",
+    "no-empty": "error",
+    "no-caller": "error",
+    "no-new-func": "error",
+    "no-extra-bind": "error",
+    "no-fallthrough": "error",
+    "no-new-wrappers": "error",
+    "no-return-await": "error",
+    "no-duplicate-case": "error",
+    "no-restricted-globals": ["error",
+      { "name": "setTimeout" },
+      { "name": "setInterval" },
+      { "name": "setImmediate" },
+      { "name": "clearTimeout" },
+      { "name": "clearInterval" },
+      { "name": "clearImmediate" }
+    ],
+    "no-var": "error",
+    "use-isnan": "error",
+    "prefer-const": "error",
+    "no-undef-init": "error",
+    "no-self-assign": "error",
+    "no-dupe-else-if": "error",
+    "space-in-parens": "error",
+    "no-unused-labels": "error",
+    "no-sparse-arrays": "error",
+    "object-shorthand": "error",
+    "no-throw-literal": "error",
+    "no-unsafe-finally": "error",
+    "no-trailing-spaces": "error",
+    "prefer-object-spread": "error",
+    "no-prototype-builtins": "error",
+    "no-template-curly-in-string": "error",
+    "unicode-bom": ["error", "never"],
+    "quote-props": ["error", "consistent-as-needed"],
+    "react/display-name": "off",
+    "react/prop-types": "error",
+    "react/no-children-prop": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-no-target-blank": "error",
+    "react/no-unknown-property": "error",
+    "react/no-unused-prop-types":"error",
+    "react/no-unescaped-entities": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/no-did-update-set-state": "error",
+    "react/jsx-no-bind":["error",{
+      "ignoreRefs": true,
+      "allowBind": false,
+      "allowFunctions": false,
+      "allowArrowFunctions": true,
+      "ignoreDOMComponents": true
+    }]
+  }
 }
