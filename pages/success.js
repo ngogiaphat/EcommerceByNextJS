@@ -12,7 +12,7 @@ const Success = () => {
         setTotalQuantities(0);
         runFireworks();
     }, []);
-    return (
+    return(
         <div className="success-wrapper">
             <div className="success">
                 <p className="icon">

@@ -63,7 +63,7 @@ export const StateContext = ({ children }) => {
             return prevQty - 1;
         });
     }
-    return (
+    return(
         <Context.Provider 
             value = {{ 
                 showCart, 

@@ -4,7 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import { StateContext } from '../context/StateContext';
 import '../styles/globals.css';
 function MyApp({ Component, pageProps }) {
-    return (
+    return(
         <StateContext>
             <Layout>
                 <Toaster />
